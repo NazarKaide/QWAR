@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWAR — Худі "who is QWAR"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fdfaf8;
+            --accent-soft: #f4e4e1;
+            --text-main: #4a4240;
+            --white: #ffffff;
+            --beige: #d8c3b3;
+            --grey: #f2f2f2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Навігація */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border-bottom: 1px solid var(--accent-soft);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            letter-spacing: 5px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        /* Секція товару */
+        .product-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+        }
+
+        /* Галерея зображень */
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: var(--accent-soft);
+            overflow: hidden;
+        }
+
+        .main-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Інформація про товар */
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .product-details h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--beige);
+            font-weight: 400;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: #666;
+            border-top: 1px solid var(--accent-soft);
+            padding-top: 20px;
+        }
+
+        /* Вибір розміру */
+        .size-selector {
+            margin: 20px 0;
+        }
+
+        .size-selector p {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .sizes {
+            display: flex;
+            gap: 10px;
+        }
+
+        .size-btn {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--beige);
+            background: none;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .size-btn:hover, .size-btn.active {
+            background: var(--text-main);
+            color: var(--white);
+            border-color: var(--text-main);
+        }
+
+        /* Кнопка купити */
+        .buy-btn {
+            padding: 20px;
+            background: var(--text-main);
+            color: var(--white);
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.4s;
+            width: 100%;
+        }
+
+        .buy-btn:hover {
+            background: var(--beige);
+        }
+
+        /* Адаптивність */
+        @media (max-width: 900px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin-top: 20px;
+            }
+            .product-details {
+                text-align: center;
+            }
+            .sizes {
+                justify-content: center;
+            }
+        }
+
+        /* Футер */
+        footer {
+            background: var(--accent-soft);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .socials a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 13px;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 10px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">QWAR</a>
+        <div class="cart-icon">Кошик (0)</div>
+    </header>
+
+    <main class="product-container">
+        <section class="product-gallery">
+            <div class="main-img">
+                <img src="css/1.jpg" alt="Худі who is QWAR">
+            </div>
+        </section>
+
+        <section class="product-details">
+            <nav style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">
+                <a href="#" style="color: #999; text-decoration: none;">Головна</a> / Худі
+            </nav>
+
+            <h1>Худі "who is QWAR"</h1>
+            <p class="price">2 900 ₴</p>
+
+            <div class="description">
+                <p>Базовий худі вільного крою з авторським принтом. Виконаний з преміальної бавовни з начосом. Ідеально підходить для створення багатошарових образів у стилі міського мінімалізму.</p>
+                <ul style="margin-top: 15px; list-style: none; font-size: 13px;">
+                    <li>• Склад: 90% бавовна, 10% поліестер</li>
+                    <li>• Унісекс модель</li>
+                    <li>• Зроблено в Україні</li>
+                </ul>
+            </div>
+
+            <div class="size-selector">
+                <p>Оберіть розмір:</p>
+                <div class="sizes">
+                    <button class="size-btn">S</button>
+                    <button class="size-btn active">M</button>
+                    <button class="size-btn">L</button>
+                    <button class="size-btn">XL</button>
+                </div>
+            </div>
+
+            <button class="buy-btn">Додати у кошик</button>
+            
+            <p style="font-size: 11px; color: #999; text-align: center;">Безкоштовна доставка від 5000 ₴</p>
+        </section>
+    </main>
+
+    <footer>
+        <span class="footer-logo">QWAR</span>
+        <div class="socials">
+            <a href="#">Instagram</a>
+            <a href="#">Pinterest</a>
+            <a href="#">TikTok</a>
+        </div>
+        <p class="copyright">© 2025 QWAR STUDIO. Made with Love.</p>
+    </footer>
+
+    <script>
+        // Проста логіка вибору розміру
+        const sizeBtns = document.querySelectorAll('.size-btn');
+        sizeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                sizeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
