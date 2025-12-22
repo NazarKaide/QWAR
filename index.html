@@ -3,390 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QWAR — Естетика вашого гардеробу</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="icon" href="css\icon.ico">
+    <title>QWAR — BLACK/WHITE STUFF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link rel="icon" href="css/icon.ico">
     <style>
         :root {
-            --bg-color: #fdfaf8;
-            --accent-soft: #f4e4e1;
-            --text-main: #4a4240;
+            --bg-color: #ffffff;
+            --text-main: #000000;
             --white: #ffffff;
-            --beige: #d8c3b3;
+            --grey: #f0f0f0;
+            --border-heavy: 4px solid #000;
+            --border-thin: 1px solid #000;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Space Mono', monospace;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.1;
             overflow-x: hidden;
         }
 
         /* --- Навігація --- */
         header {
             padding: 20px 5%;
-            background: rgba(253, 250, 248, 0.98);
+            background: var(--white);
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            border-bottom: var(--border-heavy);
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(24px, 5vw, 32px);
-            letter-spacing: 4px;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(24px, 5vw, 35px);
             text-decoration: none;
             color: var(--text-main);
-            font-weight: 600;
-        }
-
-        /* Бургер іконка */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 6px;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 30px;
-            height: 2px;
-            background: var(--text-main);
-            transition: 0.3s;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-main);
-            margin-left: 30px;
-            font-size: 12px;
+            letter-spacing: -2px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
+        }
+        .bnt_header{
+            text-decoration: none;
+            color: var(--text-main);
+            margin-left: clamp(10px, 2vw, 20px);
+            font-size: clamp(11px, 2vw, 14px);
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border: var(--border-thin);
+        }
+        .bnt_header:hover{
+            text-decoration: none;
+            background-color: #000000;
+            color: #ffffff;
+            margin-left: clamp(10px, 2vw, 20px);
+            font-size: clamp(11px, 2vw, 14px);
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border: var(--border-thin);
         }
 
-        nav a:hover { color: var(--beige); }
 
-        /* --- Герой-секція --- */
+
+        /* --- Hero --- */
         .hero {
             height: 80vh;
-            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            background: linear-gradient(to right, rgba(244, 228, 225, 0.4), rgba(216, 195, 179, 0.1)),
-                        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-position: center;
-            margin: 10px;
-            border-radius: 4px;
+            margin: 20px;
+            border: var(--border-heavy);
+            background: var(--white);
         }
 
         .hero-content {
-            max-width: 90%;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            margin-bottom: 30px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+        .hero-logo {
+            width: 90%;
+            max-width: 700px;
+            height: auto;
+            display: block;
         }
 
         .btn {
             display: inline-block;
-            padding: 16px 40px;
+            padding: clamp(12px, 3vw, 15px) clamp(30px, 5vw, 40px);
             background: var(--text-main);
             color: var(--white);
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 2px;
-            transition: 0.4s;
-        }
-        .btn:hover {
-            background: var(--white);
-            color: var(--text-main);
+            font-weight: 900;
+            font-size: clamp(14px, 3vw, 18px);
+            border: var(--border-heavy);
+            box-shadow: 6px 6px 0px #ccc;
+            transition: 0.2s;
+            margin-top: -20px;
         }
 
-        /* --- Контент (Магазин) --- */
-        .container {
-            padding: 60px 5%;
-            place-items: center;
+        .btn:hover {
+            display: inline-block;
+            padding: clamp(12px, 3vw, 15px) clamp(30px, 5vw, 40px);
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: clamp(14px, 3vw, 18px);
+            border: var(--border-heavy);
+            box-shadow: 6px 6px 0px #ccc;
+            transition: 0.2s;
+            margin-top: -20px;
         }
+
+        /* --- Магазин --- */
+        .container { padding: 40px 5%; }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px 20px;
+            gap: 2px;
+            background: #000;
+            border: var(--border-heavy);
         }
 
-        .product-card { text-align: center; }
+        .product-card {
+            background: var(--white);
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .product-card:hover { background: var(--text-main); color: var(--white); }
 
         .img-wrapper {
-            background-color: var(--accent-soft);
-            overflow: hidden;
+            background-color: var(--grey);
             margin-bottom: 15px;
-            aspect-ratio: 3/4;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border: var(--border-thin);
         }
 
-        .product-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.8s ease;
-        }
+        .product-card img { width: 100%; height: 100%; object-fit: cover; }
 
-        .product-card:hover img { transform: scale(1.05); }
-
-        .product-info h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        /* --- Адаптивність --- */
-        @media (max-width: 992px) {
-            .grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle { display: flex; }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background: var(--bg-color);
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: 0.4s;
-                box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-            }
-
-            nav.active { right: 0; }
-
-            nav a {
-                margin: 20px 0;
-                font-size: 18px;
-            }
-
-            .hero { height: 70vh; }
-        }
-
-        @media (max-width: 500px) {
-            .grid { grid-template-columns: 1fr; }
-            .container { padding: 40px 20px; }
-            .hero { margin: 0; border-radius: 0; }
-        }
-
-        /* Футер */
-        footer {
-            background: var(--accent-soft);
-            padding: 60px 5% 30px;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            letter-spacing: 8px;
-            margin-bottom: 20px;
+        .product-link {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: inherit;
+            text-decoration: none;
+            text-transform: uppercase;
             display: block;
-        }
-
-        .socials a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 13px;
-        }
-
-        .copyright {
-            margin-top: 30px;
-            font-size: 10px;
-            color: #888;
-        }
-        .product {
-            
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
             margin-bottom: 5px;
-            text-decoration: none;
         }
+
+        /* --- Адаптивність (Mobile) --- */
+        @media (max-width: 768px) {
+            header { padding: 15px 3%; }
+            .hero { height: 60vh; margin: 10px; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+            nav a:nth-child(2) { display: none; } /* Ховаємо About на малих екранах */
+        }
+
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: 1fr; }
+            .container { padding: 20px 10px; }
+            .footer-logo { font-size: 3rem; }
+        }
+
+        /* --- Footer --- */
+        footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; }
+        .footer-logo { font-family: 'Archivo Black'; font-size: clamp(2.5rem, 10vw, 5rem); border-bottom: 10px solid #fff; display: inline-block; margin-bottom: 30px; }
+        .socials a { margin: 5px; color: #fff; text-decoration: none; font-size: 10px; border: 1px solid #fff; padding: 5px 8px; display: inline-block; }
+
+        #snow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+        .snow-particle { position: absolute; background: #000; border-radius: 50%; opacity: 0.6; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-10vh); } 100% { transform: translateY(110vh); } }
     </style>
 </head>
 <body>
-
+    <div id="snow-container"></div>
     <header>
-        <a href="#" class="logo">QWAR</a>
-        
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <nav id="nav-menu">
-            <a href="#">Колекції</a>
-            <a href="#">Про нас</a>
-            <a href="#">Магазини</a>
-            <a href="#">Кошик (0)</a>
+        <a href="index.html" class="logo">QWAR//</a>
+        <nav>
+            <a class="bnt_header" href="#">Shop</a>
+            <a class="bnt_header" href="#">About</a>
+            <a class="bnt_header" href="#">Cart (0)</a>
         </nav>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Відчуття легкості</h1>
-            <p>Створено для тих, хто цінує комфорт та витончений стиль у кожному русі.</p>
-            <a href="#shop" class="btn">Переглянути вибір</a>
+            <img src="css\bg_logo.png" alt="QWAR" class="hero-logo">
+            <a href="#shop" class="btn">Go Shopping</a>
         </div>
     </section>
 
     <main class="container" id="shop">
         <div class="grid">
             <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">2 900 ₴</p>
-                </div>
+                <div class="img-wrapper"><img src="css/1.jpg" alt="Худі"></div>
+                <a class="product-link" href="product.html">WHO_IS_QWAR_HOODIE</a>
+                <p>2 900 UAH</p>
             </div>
             <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">4 100 ₴</p>
-                </div>
+                <div class="img-wrapper"><img src="css/1.jpg" alt="Худі"></div>
+                <a class="product-link" href="product.html">VOID_TECH_WEAR</a>
+                <p>4 100 UAH</p>
             </div>
             <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">3 500 ₴</p>
-                </div>
+                <div class="img-wrapper"><img src="css/1.jpg" alt="Худі"></div>
+                <a class="product-link" href="product.html">WHO_IS_QWAR_HOODIE</a>
+                <p>2 900 UAH</p>
             </div>
             <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">2 900 ₴</p>
-                </div>
+                <div class="img-wrapper"><img src="css/1.jpg" alt="Худі"></div>
+                <a class="product-link" href="product.html">VOID_TECH_WEAR</a>
+                <p>4 100 UAH</p>
             </div>
             <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">4 100 ₴</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">3 500 ₴</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">2 900 ₴</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">4 100 ₴</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="img-wrapper">
-                    <img src="css\1.jpg" alt="Худі">
-                </div>
-                <div class="product-info">
-                    <a class="product" href="product.html">Худі "who is QWAR"</a>
-                    <p class="product-price">3 500 ₴</p>
-                </div>
+                <div class="img-wrapper"><img src="css/1.jpg" alt="Худі"></div>
+                <a class="product-link" href="product.html">VOID_TECH_WEAR</a>
+                <p>4 100 UAH</p>
             </div>
         </div>
     </main>
 
     <footer>
-        <span class="footer-logo">QWAR</span>
+        <span class="footer-logo">QWAR//</span>
         <div class="socials">
-            <a href="#">Instagram</a>
-            <a href="#">Pinterest</a>
-            <a href="https://www.tiktok.com/@qwaresla">TikTok</a>
+            <a href="#">INSTAGRAM</a>
+            <a href="#">TIKTOK</a>
+            <a href="#">FACEBOOK</a>
         </div>
-        <p class="copyright">© 2025 QWAR STUDIO. Made with Love.</p>
+        <p style="margin-top: 40px; font-size: 10px; opacity: 0.5;">EST. 2025. DESIGNED FOR THE STREETS.</p>
     </footer>
 
     <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            
-            // Анімація іконки бургера (опціонально)
-            const spans = menuToggle.querySelectorAll('span');
-            spans.forEach(span => span.classList.toggle('open'));
-        });
-
-        // Закриття меню при кліку на посилання
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
+        function createSnow() {
+            const container = document.getElementById('snow-container');
+            for (let i = 0; i < 40; i++) {
+                const snow = document.createElement('div');
+                snow.className = 'snow-particle';
+                const size = Math.random() * 4 + 1 + 'px';
+                snow.style.width = size; snow.style.height = size;
+                snow.style.left = Math.random() * 100 + '%';
+                snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+                snow.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(snow);
+            }
+        }
+        createSnow();
     </script>
 </body>
 </html>
