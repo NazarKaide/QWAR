@@ -72,41 +72,17 @@
             margin-bottom: 30px;
         }
 
-        .btn-glitch {
-            position: relative;
-            padding: 25px;
+        .btn-submit {
+            width: 100%;
+            padding: 20px;
             background: #000;
             color: #fff;
             border: none;
             font-family: 'Archivo Black', sans-serif;
             font-size: 1.5rem;
-            cursor: pointer;
             text-transform: uppercase;
-            text-align: center;
-            text-decoration: none;
-            overflow: hidden;
-            display: block;
-        }
-
-        .btn-glitch:hover {
-            box-shadow: 6px 0px 0px #ff003c, -6px 0px 0px #00e5ff;
-            animation: glitch-anim 0.2s infinite;
-        }
-
-        .btn-glitch::before {
-            content: 'ADD TO BAG';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-glitch:hover::before {
-            display: flex;
-            text-shadow: 2px 0 red, -2px 0 cyan;
-            animation: glitch-layers 0.2s infinite;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
         .btn-submit:hover {
@@ -156,7 +132,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn-glitch">Confirm Order</button>
+            <button type="submit" class="btn-submit">Confirm Order</button>
         </form>
     </div>
 
