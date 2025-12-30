@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWAR — ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #000000;
+            --border-heavy: 4px solid #000;
+            --pink: #fa9cc8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 20px;
+        }
+
+        .checkout-container {
+            max-width: 800px;
+            margin: 40px auto;
+            border: var(--border-heavy);
+            padding: 40px;
+            background: #fff;
+            box-shadow: 20px 20px 0px #000;
+        }
+
+        h1 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            border-bottom: var(--border-heavy);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: var(--border-heavy);
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus {
+            background: var(--pink);
+        }
+
+        .order-summary {
+            background: var(--pink);
+            padding: 20px;
+            border: var(--border-heavy);
+            margin-bottom: 30px;
+        }
+
+        .btn-glitch {
+            position: relative;
+            padding: 25px;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-align: center;
+            text-decoration: none;
+            overflow: hidden;
+            display: block;
+        }
+
+        .btn-glitch:hover {
+            box-shadow: 6px 0px 0px #ff003c, -6px 0px 0px #00e5ff;
+            animation: glitch-anim 0.2s infinite;
+        }
+
+        .btn-glitch::before {
+            content: 'ADD TO BAG';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-glitch:hover::before {
+            display: flex;
+            text-shadow: 2px 0 red, -2px 0 cyan;
+            animation: glitch-layers 0.2s infinite;
+        }
+
+        .btn-submit:hover {
+            background: var(--pink);
+            color: #000;
+            box-shadow: 10px 10px 0px #000;
+            transform: translate(-5px, -5px);
+        }
+
+        @media (max-width: 600px) {
+            .checkout-container { padding: 20px; margin: 10px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <h1>Checkout / Оформлення</h1>
+        
+        <form id="orderForm">
+            <div class="order-summary">
+                <p><strong>ITEM:</strong> WHO IS QWAR HOODIE</p>
+                <p><strong>TOTAL:</strong> 2 900 ₴</p>
+            </div>
+
+            <div class="form-group">
+                <label>Прізвище та Ім'я</label>
+                <input type="text" name="name" placeholder="IVAN IVANOV" required>
+            </div>
+
+            <div class="form-group">
+                <label>Телефон</label>
+                <input type="tel" name="phone" placeholder="+380 00 000 00 00" required>
+            </div>
+
+            <div class="form-group">
+                <label>Місто та № Відділення Нової Пошти</label>
+                <input type="text" name="address" placeholder="KYIV, OFFICE #1" required>
+            </div>
+
+            <div class="form-group">
+                <label>Спосіб оплати</label>
+                <select name="payment">
+                    <option value="card">Оплата картою</option>
+                    <option value="cod">Накладений платіж</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-glitch">Confirm Order</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('orderForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert('Дякуємо! Замовлення прийнято. Ми зв’яжемося з вами найближчим часом.');
+            window.location.href = 'index.html';
+        };
+    </script>
+</body>
+</html>
