@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QWAR — ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</title>
+    <title>QWAR — CHECKOUT</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,25 +19,36 @@
             font-family: 'Space Mono', monospace;
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding: 20px;
+            padding: 10px; /* Мінімальний відступ для мобільних */
+            line-height: 1.2;
         }
 
         .checkout-container {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 20px auto;
             border: var(--border-heavy);
-            padding: 40px;
+            padding: clamp(20px, 5vw, 40px); /* Адаптивні відступи всередині */
             background: #fff;
-            box-shadow: 20px 20px 0px #000;
+            box-shadow: 10px 10px 0px #000;
         }
 
         h1 {
             font-family: 'Archivo Black', sans-serif;
             text-transform: uppercase;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            margin-bottom: 25px;
             border-bottom: var(--border-heavy);
             padding-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .order-summary {
+            background: var(--pink);
+            padding: 15px;
+            border: var(--border-heavy);
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 14px;
         }
 
         .form-group {
@@ -49,27 +60,21 @@
             font-weight: 900;
             text-transform: uppercase;
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 12px;
         }
 
-        input, select, textarea {
+        input, select {
             width: 100%;
             padding: 15px;
             border: var(--border-heavy);
-            font-family: inherit;
-            font-size: 1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 16px; /* Запобігає зуму на iOS */
             outline: none;
+            background: #fff;
         }
 
         input:focus {
             background: var(--pink);
-        }
-
-        .order-summary {
-            background: var(--pink);
-            padding: 20px;
-            border: var(--border-heavy);
-            margin-bottom: 30px;
         }
 
         .btn-submit {
@@ -79,67 +84,69 @@
             color: #fff;
             border: none;
             font-family: 'Archivo Black', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
             cursor: pointer;
             transition: 0.2s;
+            margin-top: 10px;
         }
 
         .btn-submit:hover {
             background: var(--pink);
             color: #000;
-            box-shadow: 10px 10px 0px #000;
-            transform: translate(-5px, -5px);
+            box-shadow: 6px 6px 0px #000;
+            transform: translate(-3px, -3px);
         }
 
-        @media (max-width: 600px) {
-            .checkout-container { padding: 20px; margin: 10px; }
-            h1 { font-size: 1.5rem; }
+        /* Адаптація для дуже малих екранів */
+        @media (max-width: 480px) {
+            body { padding: 5px; }
+            .checkout-container { margin: 10px 0; box-shadow: 5px 5px 0px #000; }
         }
     </style>
 </head>
 <body>
 
     <div class="checkout-container">
-        <h1>Checkout / Оформлення</h1>
+        <h1>ORDER FORM</h1>
         
         <form id="orderForm">
             <div class="order-summary">
-                <p><strong>ITEM:</strong> WHO IS QWAR HOODIE</p>
-                <p><strong>TOTAL:</strong> 2 900 ₴</p>
+                <p>ITEM: WHO IS QWAR HOODIE</p>
+                <p>PRICE: 2 900 ₴</p>
             </div>
 
             <div class="form-group">
-                <label>Прізвище та Ім'я</label>
+                <label>ПІБ (FULL NAME)</label>
                 <input type="text" name="name" placeholder="IVAN IVANOV" required>
             </div>
 
             <div class="form-group">
-                <label>Телефон</label>
-                <input type="tel" name="phone" placeholder="+380 00 000 00 00" required>
+                <label>ТЕЛЕФОН (PHONE)</label>
+                <input type="tel" name="phone" placeholder="+380..." required>
             </div>
 
             <div class="form-group">
-                <label>Місто та № Відділення Нової Пошти</label>
-                <input type="text" name="address" placeholder="KYIV, OFFICE #1" required>
+                <label>МІСТО ТА № НОВОЇ ПОШТИ</label>
+                <input type="text" name="address" placeholder="KYIV, #1" required>
             </div>
 
             <div class="form-group">
-                <label>Спосіб оплати</label>
+                <label>ОПЛАТА (PAYMENT)</label>
                 <select name="payment">
-                    <option value="card">Оплата картою</option>
-                    <option value="cod">Накладений платіж</option>
+                    <option value="card">КАРТКА (CARD)</option>
+                    <option value="cod">НАКЛАДЕНИЙ ПЛАТІЖ</option>
                 </select>
             </div>
 
-            <button type="submit" class="btn-submit">Confirm Order</button>
+            <button type="submit" class="btn-submit">CONFIRM ORDER</button>
         </form>
     </div>
 
     <script>
         document.getElementById('orderForm').onsubmit = function(e) {
             e.preventDefault();
-            alert('Дякуємо! Замовлення прийнято. Ми зв’яжемося з вами найближчим часом.');
+            alert('ЗАМОВЛЕННЯ ВІДПРАВЛЕНО!');
             window.location.href = 'index.html';
         };
     </script>
