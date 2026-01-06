@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWAR — YOUR CART</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="css/icon.ico">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #000000;
+            --pink: #fa9cc8;
+            --border-heavy: 4px solid #000;
+            --border-thin: 1px solid #000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 20px 5%;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-heavy);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { width: 100px; height: auto; }
+
+        /* --- Cart Layout --- */
+        .cart-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            min-height: 60vh;
+        }
+
+        h1 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 30px;
+            border-bottom: var(--border-heavy);
+            padding-bottom: 10px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 20px;
+            border: var(--border-heavy);
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border: var(--border-thin);
+        }
+
+        .item-info h3 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        .item-price {
+            font-weight: 700;
+            margin-top: 10px;
+            background: var(--pink);
+            display: inline-block;
+            padding: 2px 8px;
+        }
+
+        .remove-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-family: 'Space Mono';
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .remove-btn:hover {
+            background: red;
+        }
+
+        /* --- Summary --- */
+        .cart-summary {
+            margin-top: 40px;
+            border: var(--border-heavy);
+            padding: 30px;
+            background: #f0f0f0;
+            text-align: right;
+            box-shadow: 12px 12px 0px #000;
+        }
+
+        .total-row {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .checkout-btn {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 20px 50px;
+            text-decoration: none;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background: var(--pink);
+            color: #000;
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        /* --- Footer --- */
+        footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; margin-top: 80px; }
+        .footer-logo-img { margin-bottom: 20px; width: 250px; height: auto; }
+
+        @media (max-width: 600px) {
+            .cart-item { grid-template-columns: 80px 1fr; }
+            .remove-btn { grid-column: 1 / -1; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html"><img class="logo" src="css/logo.png" alt="QWAR"></a>
+        <a href="index.html#shop" style="text-decoration: none; color: #000; font-weight: 900; border: var(--border-thin); padding: 5px 15px;">BACK TO SHOP</a>
+    </header>
+
+    <main class="cart-container">
+        <h1>YOUR BAG</h1>
+
+        <div id="cart-items-list">
+            <div class="cart-item">
+                <img src="css/1.jpg" alt="Product">
+                <div class="item-info">
+                    <h3>WHO IS QWAR HOODIE</h3>
+                    <p>SIZE: M</p>
+                    <p class="item-price">2 900 ₴</p>
+                </div>
+                <button class="remove-btn" onclick="this.parentElement.remove(); updateTotal();">REMOVE</button>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <div class="total-row">
+                TOTAL: <span id="total-amount">2 900</span> ₴
+            </div>
+            <a href="shop.html" class="checkout-btn">PROCEED TO CHECKOUT</a>
+        </div>
+    </main>
+
+    <footer>
+        <img class="footer-logo-img" src="css/logo_footer.png" alt="#">
+        <p style="font-size: 10px; opacity: 0.5;">EST. 2025. DESIGNED FOR THE STREETS.</p>
+    </footer>
+
+    <script>
+        function updateTotal() {
+            const prices = document.querySelectorAll('.item-price');
+            let total = 0;
+            prices.forEach(p => {
+                total += parseInt(p.innerText.replace(/\s/g, ''));
+            });
+            document.getElementById('total-amount').innerText = total.toLocaleString();
+            
+            if(total === 0) {
+                document.querySelector('.cart-container').innerHTML = '<h1>YOUR BAG</h1><p style="text-align:center; padding: 50px;">YOUR CART IS EMPTY.</p><div style="text-align:center;"><a href="index.html" class="checkout-btn">GO SHOPPING</a></div>';
+            }
+        }
+    </script>
+</body>
+</html>
