@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWAR — ABOUT THE BRAND</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="css/icon.ico">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #000000;
+            --pink: #fa9cc8;
+            --border-heavy: 4px solid #000;
+            --border-thin: 1px solid #000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        /* --- Noise Effect --- */
+        #noise-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .grain {
+            position: absolute;
+            background: #000;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 20px 5%;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: var(--border-heavy);
+        }
+
+        .logo { width: 100px; height: auto; }
+
+        .bnt_header {
+            text-decoration: none;
+            color: var(--text-main);
+            margin-left: clamp(10px, 2vw, 20px);
+            font-size: clamp(11px, 2vw, 14px);
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border: var(--border-thin);
+        }
+
+        .bnt_header:hover, .bnt_header.active {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* --- About Content --- */
+        .about-hero {
+            margin: 20px;
+            border: var(--border-heavy);
+            padding: clamp(40px, 10vw, 80px) 5%;
+            background: var(--pink);
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            text-transform: uppercase;
+            line-height: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .manifesto {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            text-align: left;
+            border-left: var(--border-heavy);
+            padding-left: 25px;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 15px 15px 0px #000;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 20px;
+        }
+
+        .stat-card {
+            border: var(--border-heavy);
+            padding: 30px;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 8px 8px 0px var(--pink);
+        }
+
+        .stat-card h3 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* --- Footer --- */
+        footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; }
+        .footer-logo-img { margin-bottom: 20px; width: 250px; height: auto; }
+        .socials a { margin: 5px; color: #fff; text-decoration: none; font-size: 10px; border: 1px solid #fff; padding: 5px 8px; display: inline-block; }
+
+        @media (max-width: 768px) {
+            .about-hero { margin: 10px; padding: 40px 20px; }
+            .manifesto { box-shadow: 8px 8px 0px #000; }
+        }
+    </style>
+</head>
+<body>
+    <div id="noise-container"></div>
+
+    <header>
+        <a href="index.html"><img class="logo" src="css/logo.png" alt="QWAR"></a>
+        <nav>
+            <a class="bnt_header" href="index.html#shop">Shop</a>
+            <a class="bnt_header active" href="about.html">About</a>
+            <a class="bnt_header" href="shop.html">Cart (0)</a>
+        </nav>
+    </header>
+
+    <section class="about-hero">
+        <h1>WE ARE<br>QWAR</h1>
+        <div class="manifesto">
+            <p><strong>QWAR</strong> — це не просто одяг. Це візуальна мова вулиць, народжена в 2025 році. Ми створюємо речі для тих, хто бачить красу в хаосі та силу в простоті чорно-білих контрастів.</p>
+            <br>
+            <p>Ми не слідуємо трендам — ми створюємо артефакти, що витримують випробування часом та бетонними джунглями.</p>
+        </div>
+    </section>
+
+    <main class="stats-grid">
+        <div class="stat-card">
+            <h3>QUALITY</h3>
+            <p>Використовуємо лише щільну бавовну та фурнітуру, яка не підведе. Кожен шов — це маніфест надійності.</p>
+        </div>
+        <div class="stat-card">
+            <h3>DESIGN</h3>
+            <p>Естетика помилок, глітчу та мінімалізму. Ми віримо, що менше — це більше, якщо це зроблено з розумом.</p>
+        </div>
+        <div class="stat-card">
+            <h3>COMMUNITY</h3>
+            <p>QWAR об’єднує художників, райдерів та нічних мешканців міста. Ми — голос нової генерації.</p>
+        </div>
+    </main>
+
+    <footer>
+        <img class="footer-logo-img" src="css/logo_footer.png" alt="#">
+        <div class="socials">
+            <a href="#">INSTAGRAM</a>
+            <a href="#">TIKTOK</a>
+            <a href="#">FACEBOOK</a>
+        </div>
+        <p style="margin-top: 40px; font-size: 10px; opacity: 0.5;">EST. 2025. DESIGNED FOR THE STREETS.</p>
+    </footer>
+
+    <script>
+        function initNoise() {
+            const container = document.getElementById('noise-container');
+            const particleCount = 35; 
+            for (let i = 0; i < particleCount; i++) {
+                const grain = document.createElement('div');
+                grain.className = 'grain';
+                const size = Math.random() * 1.5 + 0.5;
+                grain.style.width = size + 'px';
+                grain.style.height = size + 'px';
+                grain.style.left = Math.random() * 100 + '%';
+                grain.style.top = Math.random() * 100 + '%';
+                grain.animate([
+                    { opacity: 0 }, { opacity: 0.12 }, { opacity: 0 }
+                ], {
+                    duration: Math.random() * 2000 + 1000,
+                    iterations: Infinity
+                });
+                container.appendChild(grain);
+            }
+        }
+        initNoise();
+    </script>
+</body>
+</html>
