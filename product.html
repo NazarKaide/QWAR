@@ -241,6 +241,21 @@
             color: #000; font-size: 50px;
             font-family: 'Archivo Black'; cursor: pointer;
         }
+        .bnt_header {
+            text-decoration: none;
+            color: var(--text-main);
+            margin-left: clamp(10px, 2vw, 20px);
+            font-size: clamp(11px, 2vw, 14px);
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border: var(--border-thin);
+        }
+
+        .bnt_header:hover, .bnt_header.active {
+            background-color: #000;
+            color: #fff;
+        }
 
         /* --- Footer --- */
         footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; }
@@ -261,7 +276,7 @@
 
     <header>
         <a href="index.html"><img class="logo" src="css\logo.png" alt="#"></a>
-        <div class="cart-status">CART(0)</div>
+        <a class="bnt_header" href="cart.html">Cart (0)</a>
     </header>
 
     <main class="product-container">
