@@ -174,7 +174,47 @@
             .container { padding: 20px 10px; }
             .footer-logo { font-size: 3rem; }
         }
+        /* --- Новий Прелоадер QWAR --- */
+        .loader {       
+        position: fixed;
+        inset: 0;
+        background: #000;
+        z-index: 10001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Лоадер зникає через 2.5 секунди */
+        animation: fadeOutLoader 0.8s forwards 2.5s;
+        }
 
+        .loader-content {       
+        overflow: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Archivo Black', sans-serif; /* Твій основний шрифт */
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: #ffffff;
+            letter-spacing: 15px;
+            text-transform: uppercase;
+            display: block;
+            /* Початковий стан для анімації */
+            transform: translateY(110%);
+            animation: slideUpText 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s;
+        }
+
+/* Анімація виїзду тексту знизу */
+        @keyframes slideUpText {
+            to { transform: translateY(0); }
+        }
+
+        /* Анімація зникнення всього екрану */
+        @keyframes fadeOutLoader {      
+        to { 
+            opacity: 0; 
+            visibility: hidden; 
+        }
+        }
         /* --- Footer --- */
          footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; }
         .footer-logo { font-family: 'Archivo Black'; font-size: clamp(2.5rem, 10vw, 5rem); border-bottom: 10px solid #fff; display: inline-block; margin-bottom: 30px;}
@@ -187,6 +227,11 @@
     </style>
 </head>
 <body>
+    <div class="loader">
+        <div class="loader-content">
+            <span class="loader-text">QWAR</span>
+        </div>
+    </div>
     <div id="snow-container"></div>
     <header>
         <a href="index.html" ><img class="logo" src="css\logo.png" alt="#"></a>
