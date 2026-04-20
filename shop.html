@@ -7,162 +7,265 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-main: #000000;
-            --border-heavy: 4px solid #000;
-            --pink: #fa9cc8;
+            --bg: #f0f0f0;
+            --black: #000000;
+            --accent: #fa9cc8;
+            --border: 2px solid #000; /* Уніфіковано до 2px */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Space Mono', monospace;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            padding: 0px; /* Мінімальний відступ для мобільних */
+            background-color: var(--bg);
+            color: var(--black);
             line-height: 1.2;
-            margin: 0 0;
+            overflow-x: hidden;
         }
 
+        /* --- Marquee --- */
+        .marquee {
+            background: var(--black);
+            color: #fff;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: var(--border);
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border);
+            background: var(--bg);
+        }
+
+        .logo { 
+            font-family: 'Archivo Black'; 
+            font-size: 2.5rem; 
+            letter-spacing: -2px; 
+            text-decoration: none; 
+            color: var(--black);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 700;
+            border: var(--border);
+            padding: 10px 20px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .nav-link:hover { background: var(--black); color: #fff; }
+
+        /* --- Checkout Container --- */
         .checkout-container {
             max-width: 800px;
-            margin: 20px auto;
-            border: var(--border-heavy);
-            padding: clamp(20px, 5vw, 40px); /* Адаптивні відступи всередині */
+            margin: 60px auto;
+            border: var(--border);
+            padding: clamp(20px, 5vw, 60px);
             background: #fff;
-            box-shadow: 10px 10px 0px #000;
+            box-shadow: 15px 15px 0px var(--black);
         }
 
         h1 {
-            font-family: 'Archivo Black', sans-serif;
+            font-family: 'Archivo Black';
             text-transform: uppercase;
-            font-size: clamp(1.5rem, 6vw, 2.5rem);
-            margin-bottom: 25px;
-            border-bottom: var(--border-heavy);
-            padding-bottom: 10px;
-            letter-spacing: -1px;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 30px;
+            line-height: 0.8;
+            border-bottom: var(--border);
+            padding-bottom: 20px;
         }
 
         .order-summary {
-            background: var(--pink);
-            padding: 15px;
-            border: var(--border-heavy);
-            margin-bottom: 25px;
+            background: var(--accent);
+            padding: 20px;
+            border: var(--border);
+            margin-bottom: 30px;
             font-weight: 700;
-            font-size: 14px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .order-summary::after {
+            content: "CONFIRM_DETAILS";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: var(--black);
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 8px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         label {
             display: block;
             font-weight: 900;
             text-transform: uppercase;
-            margin-bottom: 8px;
-            font-size: 12px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            letter-spacing: 1px;
         }
 
         input, select {
             width: 100%;
-            padding: 15px;
-            border: var(--border-heavy);
+            padding: 18px;
+            border: var(--border);
             font-family: 'Space Mono', monospace;
-            font-size: 16px; /* Запобігає зуму на iOS */
+            font-size: 16px;
             outline: none;
             background: #fff;
+            transition: 0.2s;
         }
 
         input:focus {
-            background: var(--pink);
+            background: var(--bg);
+            box-shadow: inset 4px 4px 0px rgba(0,0,0,0.05);
         }
 
         .btn-submit {
             width: 100%;
-            padding: 20px;
-            background: #000;
+            padding: 25px;
+            background: var(--black);
             color: #fff;
             border: none;
             font-family: 'Archivo Black', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             text-transform: uppercase;
             cursor: pointer;
-            transition: 0.2s;
-            margin-top: 10px;
+            transition: 0.3s;
+            margin-top: 20px;
+            box-shadow: 8px 8px 0px var(--accent);
         }
 
         .btn-submit:hover {
-            background: var(--pink);
-            color: #000;
-            box-shadow: 6px 6px 0px #000;
-            transform: translate(-3px, -3px);
+            background: var(--accent);
+            color: var(--black);
+            box-shadow: 12px 12px 0px var(--black);
+            transform: translate(-4px, -4px);
         }
-/* --- Footer --- */
-         footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; }
-        .footer-logo { font-family: 'Archivo Black'; font-size: clamp(2.5rem, 10vw, 5rem); border-bottom: 10px solid #fff; display: inline-block; margin-bottom: 30px;}
-        .footer-logo-img{margin-bottom: 20px; width: 250px; height: auto;}
-        .socials a { margin: 5px; color: #fff; text-decoration: none; font-size: 10px; border: 1px solid #fff; padding: 5px 8px; display: inline-block; }
 
-        /* Адаптація для дуже малих екранів */
+        /* --- Footer --- */
+        footer {
+            background: var(--black);
+            color: #fff;
+            padding: 80px 5%;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .footer-logo {
+            font-family: 'Archivo Black';
+            font-size: clamp(4rem, 20vw, 12rem);
+            line-height: 0.8;
+            opacity: 0.1;
+            margin-bottom: 40px;
+        }
+
+        .social-box a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid transparent;
+        }
+        .social-box a:hover { border-bottom-color: var(--accent); }
+
         @media (max-width: 480px) {
-            body { padding: 5px; }
-            .checkout-container { margin: 10px 0; box-shadow: 5px 5px 0px #000; }
+            .checkout-container { margin: 20px 10px; padding: 20px; }
+            .btn-submit { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="marquee">
+        <div class="marquee-inner">
+            FINAL STEP // ARCHIVE DATA PROCESSING // SECURE CONNECTION // FINAL STEP // ARCHIVE DATA PROCESSING // SECURE CONNECTION //
+        </div>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo">QWAR</a>
+        <nav>
+            <a href="cart.html" class="nav-link">Back to Bag</a>
+        </nav>
+    </header>
+
     <div class="checkout-container">
-        <h1>ORDER FORM</h1>
+        <h1>ORDER_FORM</h1>
         
         <form id="orderForm">
             <div class="order-summary">
-                <p>ITEM: WHO IS QWAR HOODIE</p>
-                <p>PRICE: 2 900 ₴</p>
+                <p>ITEM: WHO IS QWAR HOODIE [M]</p>
+                <p>TOTAL: 2 900 UAH</p>
             </div>
 
             <div class="form-group">
-                <label>ПІБ (FULL NAME)</label>
+                <label>ПІБ (FULL_NAME)</label>
                 <input type="text" name="name" placeholder="IVAN IVANOV" required>
             </div>
 
             <div class="form-group">
-                <label>ТЕЛЕФОН (PHONE)</label>
+                <label>ТЕЛЕФОН (PHONE_NUMBER)</label>
                 <input type="tel" name="phone" placeholder="+380..." required>
             </div>
 
             <div class="form-group">
-                <label>МІСТО ТА № НОВОЇ ПОШТИ</label>
-                <input type="text" name="address" placeholder="KYIV, #1" required>
+                <label>МІСТО ТА № НОВОЇ ПОШТИ (DELIVERY)</label>
+                <input type="text" name="address" placeholder="KYIV, NP #1" required>
             </div>
 
             <div class="form-group">
-                <label>ОПЛАТА (PAYMENT)</label>
+                <label>ОПЛАТА (PAYMENT_METHOD)</label>
                 <select name="payment">
-                    <option value="card">КАРТКА (CARD)</option>
-                    <option value="cod">НАКЛАДЕНИЙ ПЛАТІЖ</option>
+                    <option value="card">КАНТКА (CARD_ONLINE)</option>
+                    <option value="cod">ПРИ ОТРИМАННІ (COD)</option>
                 </select>
             </div>
 
-            <button type="submit" class="btn-submit">CONFIRM ORDER</button>
+            <button type="submit" class="btn-submit">CONFIRM_ORDER</button>
         </form>
     </div>
 
     <footer>
-        <img class="footer-logo-img" src="css\logo_footer.png" alt="#">
-        <div class="socials">
+        <div class="footer-logo">QWAR</div>
+        <div class="social-box">
             <a href="#">INSTAGRAM</a>
-            <a href="#">TIKTOK</a>
             <a href="#">TELEGRAM</a>
+            <a href="#">TIKTOK</a>
         </div>
-        <p style="margin-top: 40px; font-size: 10px; opacity: 0.5;">EST. 2025. DESIGNED FOR THE STREETS.</p>
+        <p style="margin-top: 60px; font-size: 10px; opacity: 0.5;">© 2026. ALL RIGHTS RESERVED. RIVNE / UA.</p>
     </footer>
 
     <script>
         document.getElementById('orderForm').onsubmit = function(e) {
             e.preventDefault();
-            alert('ЗАМОВЛЕННЯ ВІДПРАВЛЕНО!');
+            alert('SYSTEM: ORDER_SUCCESSFULLY_DATA_SENT');
             window.location.href = 'index.html';
         };
     </script>

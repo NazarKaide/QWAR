@@ -3,172 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QWAR — YOUR CART</title>
+    <title>QWAR — YOUR_BAG</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="css/icon.ico">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-main: #000000;
-            --pink: #fa9cc8;
-            --border-heavy: 4px solid #000;
-            --border-thin: 1px solid #000;
+            --bg: #f0f0f0;
+            --black: #000000;
+            --accent: #fa9cc8;
+            --border: 2px solid #000;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Space Mono', monospace;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.2;
+            background-color: var(--bg);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* --- Marquee --- */
+        .marquee {
+            background: var(--black);
+            color: #fff;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: var(--border);
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* --- Header --- */
         header {
-            padding: 20px 5%;
-            background: #fff;
+            padding: 30px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: var(--border-heavy);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            border-bottom: var(--border);
+            background: var(--bg);
         }
 
-        .logo { width: 100px; height: auto; }
+        .logo { 
+            font-family: 'Archivo Black'; 
+            font-size: 2.5rem; 
+            letter-spacing: -2px; 
+            text-decoration: none; 
+            color: var(--black);
+        }
 
-        /* --- Cart Layout --- */
+        .nav-link {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 700;
+            border: var(--border);
+            padding: 10px 20px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .nav-link:hover { background: var(--black); color: #fff; }
+
+        /* --- Cart Content --- */
         .cart-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
             min-height: 60vh;
         }
 
         h1 {
-            font-family: 'Archivo Black', sans-serif;
+            font-family: 'Archivo Black';
             text-transform: uppercase;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 30px;
-            border-bottom: var(--border-heavy);
-            padding-bottom: 10px;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 0.8;
+            margin-bottom: 40px;
         }
 
         .cart-item {
             display: grid;
-            grid-template-columns: 120px 1fr auto;
-            gap: 20px;
-            border: var(--border-heavy);
+            grid-template-columns: 150px 1fr auto;
+            gap: 30px;
+            border: var(--border);
             padding: 20px;
             margin-bottom: 20px;
             background: #fff;
             align-items: center;
+            transition: 0.3s;
+        }
+
+        .cart-item:hover {
+            transform: rotate(-1deg);
+            box-shadow: 10px 10px 0px var(--black);
         }
 
         .cart-item img {
             width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border: var(--border-thin);
+            border: var(--border);
         }
 
         .item-info h3 {
-            font-family: 'Archivo Black', sans-serif;
+            font-family: 'Archivo Black';
             text-transform: uppercase;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
         }
 
         .item-price {
             font-weight: 700;
-            margin-top: 10px;
-            background: var(--pink);
+            background: var(--black);
+            color: #fff;
             display: inline-block;
-            padding: 2px 8px;
+            padding: 5px 15px;
         }
 
         .remove-btn {
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
+            background: none;
+            border: var(--border);
+            padding: 10px 20px;
             cursor: pointer;
-            font-family: 'Space Mono';
+            font-family: inherit;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 12px;
+            transition: 0.2s;
         }
 
         .remove-btn:hover {
-            background: red;
+            background: var(--black);
+            color: #fff;
         }
 
-        /* --- Summary --- */
+        /* --- Summary Section --- */
         .cart-summary {
-            margin-top: 40px;
-            border: var(--border-heavy);
-            padding: 30px;
-            background: #f0f0f0;
+            margin-top: 50px;
+            border: var(--border);
+            padding: 40px;
+            background: #fff;
             text-align: right;
-            box-shadow: 12px 12px 0px #000;
+            box-shadow: 15px 15px 0px var(--black);
         }
 
         .total-row {
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
+            font-family: 'Archivo Black';
+            font-size: 2rem;
+            margin-bottom: 30px;
             text-transform: uppercase;
         }
 
         .checkout-btn {
             display: inline-block;
-            background: #000;
-            color: #fff;
-            padding: 20px 50px;
+            background: var(--accent);
+            color: var(--black);
+            padding: 20px 60px;
             text-decoration: none;
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 1.2rem;
+            font-family: 'Archivo Black';
+            font-size: 1.5rem;
             text-transform: uppercase;
-            transition: 0.2s;
-            border: none;
-            cursor: pointer;
+            border: var(--border);
+            box-shadow: 8px 8px 0px var(--black);
+            transition: 0.3s;
         }
 
         .checkout-btn:hover {
-            background: var(--pink);
-            color: #000;
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0px #000;
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px var(--black);
+            background: #fff;
         }
 
-        /* --- Footer --- */
-        footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; margin-top: 80px; }
-        .footer-logo-img { margin-bottom: 20px; width: 250px; height: auto; }
+        /* --- Footer (Copy from Index) --- */
+        footer {
+            background: var(--black);
+            color: #fff;
+            padding: 80px 5%;
+            text-align: center;
+        }
 
-        @media (max-width: 600px) {
-            .cart-item { grid-template-columns: 80px 1fr; }
+        .footer-logo {
+            font-family: 'Archivo Black';
+            font-size: clamp(4rem, 20vw, 12rem);
+            line-height: 0.8;
+            opacity: 0.1;
+            margin-bottom: 40px;
+        }
+
+        .social-box a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .cart-item { grid-template-columns: 100px 1fr; }
             .remove-btn { grid-column: 1 / -1; width: 100%; }
+            .checkout-btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <div class="marquee">
+        <div class="marquee-inner">
+            SECURE CHECKOUT // QWAR ARCHIVE // NO RETURNS ONLY RAW // SECURE CHECKOUT // QWAR ARCHIVE // NO RETURNS ONLY RAW //
+        </div>
+    </div>
+
     <header>
-        <a href="index.html"><img class="logo" src="css/logo.png" alt="QWAR"></a>
-        <a href="index.html#shop" style="text-decoration: none; color: #000; font-weight: 900; border: var(--border-thin); padding: 5px 15px;">BACK TO SHOP</a>
+        <a href="index.html" class="logo">QWAR</a>
+        <nav>
+            <a href="index.html#shop" class="nav-link">Back to Shop</a>
+        </nav>
     </header>
 
     <main class="cart-container">
-        <h1>YOUR BAG</h1>
+        <h1>YOUR_BAG</h1>
 
         <div id="cart-items-list">
             <div class="cart-item">
                 <img src="css/1.jpg" alt="Product">
                 <div class="item-info">
-                    <h3>WHO IS QWAR HOODIE</h3>
-                    <p>SIZE: M</p>
-                    <p class="item-price">2 900 ₴</p>
+                    <h3>WHO_IS_QWAR_HOODIE</h3>
+                    <p style="margin-bottom: 5px; opacity: 0.6;">SIZE: M</p>
+                    <p class="item-price">2 900 UAH</p>
                 </div>
                 <button class="remove-btn" onclick="this.parentElement.remove(); updateTotal();">REMOVE</button>
             </div>
@@ -176,15 +244,20 @@
 
         <div class="cart-summary">
             <div class="total-row">
-                TOTAL: <span id="total-amount">2 900</span> ₴
+                TOTAL: <span id="total-amount">2 900</span> UAH
             </div>
-            <a href="shop.html" class="checkout-btn">PROCEED TO CHECKOUT</a>
+            <a href="shop.html" class="checkout-btn">CHECKOUT</a>
         </div>
     </main>
 
     <footer>
-        <img class="footer-logo-img" src="css/logo_footer.png" alt="#">
-        <p style="font-size: 10px; opacity: 0.5;">EST. 2025. DESIGNED FOR THE STREETS.</p>
+        <div class="footer-logo">QWAR</div>
+        <div class="social-box">
+            <a href="#">INSTAGRAM</a>
+            <a href="#">TELEGRAM</a>
+            <a href="#">TIKTOK</a>
+        </div>
+        <p style="margin-top: 60px; font-size: 10px; opacity: 0.5;">© 2026. ALL RIGHTS RESERVED. RIVNE / UA.</p>
     </footer>
 
     <script>
@@ -197,9 +270,49 @@
             document.getElementById('total-amount').innerText = total.toLocaleString();
             
             if(total === 0) {
-                document.querySelector('.cart-container').innerHTML = '<h1>YOUR BAG</h1><p style="text-align:center; padding: 50px;">YOUR CART IS EMPTY.</p><div style="text-align:center;"><a href="index.html" class="checkout-btn">GO SHOPPING</a></div>';
+                document.querySelector('.cart-container').innerHTML = '<h1>YOUR_BAG</h1><p style="text-align:center; padding: 50px; font-family:\'Archivo Black\'">EMPTY_VOID.</p><div style="text-align:center;"><a href="index.html" class="checkout-btn">GO_SHOPPING</a></div>';
             }
         }
+            function loadCart() {
+                const cartItemsContainer = document.getElementById('cart-items-list');
+                const totalAmount = document.getElementById('total-amount');
+        
+        // Отримуємо дані з LocalStorage
+                const savedItem = localStorage.getItem('cartItem');
+
+                if (savedItem) {
+                    const item = JSON.parse(savedItem);
+            
+            // Очищуємо контейнер і вставляємо дані
+                    cartItemsContainer.innerHTML = `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.title}">
+                            <div class="item-info">
+                                <h3>${item.title}</h3>
+                                <p style="margin-bottom: 5px; opacity: 0.6;">SIZE: M (SELECTED)</p>
+                                <p class="item-price">${item.price}</p>
+                            </div>
+                            <button class="remove-btn" onclick="clearCart()">REMOVE</button>
+                        </div>
+            `       ;
+            
+            // Оновлюємо загальну суму (видаляємо пробіли та текст "UAH")
+                    totalAmount.innerText = item.price.replace(' UAH', '');
+                } else {
+            // Якщо кошик порожній
+                    cartItemsContainer.innerHTML = '<p style="text-align:center; padding: 50px; font-family:\'Archivo Black\'">EMPTY_VOID.</p>';
+                    totalAmount.innerText = '0';
+                    document.querySelector('.checkout-btn').style.display = 'none';
+                }
+            }
+
+            function clearCart() {
+                localStorage.removeItem('cartItem');
+                loadCart(); // Перевантажуємо вигляд
+            }
+
+    // Запускаємо при завантаженні сторінки
+            window.onload = loadCart;
     </script>
 </body>
 </html>

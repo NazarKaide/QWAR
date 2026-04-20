@@ -3,298 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QWAR — PRODUCT RAW</title>
+    <title>QWAR — PRODUCT</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="css/icon.ico">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-main: #000000;
-            --white: #ffffff;
-            --border-heavy: 4px solid #000;
-            --border-thin: 1px solid #000;
+            --bg: #f0f0f0;
+            --black: #000;
+            --accent: #fa9cc8;
+            --border: 2px solid #000;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Space Mono', monospace;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.2;
+            background-color: var(--bg);
+            color: var(--black);
             overflow-x: hidden;
         }
 
-        /* --- Ефект зернистості (Noise) --- */
-        #noise-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
+        /* Marquee */
+        .marquee {
+            background: var(--black);
+            color: #fff;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: var(--border);
         }
-        .grain {
-            position: absolute;
-            background: #000;
-            border-radius: 50%;
-            opacity: 0;
-        }
-        .cart-status{
-            text-decoration: none;
-            color: var(--text-main);
-            margin-left: clamp(10px, 2vw, 20px);
-            font-size: clamp(11px, 2vw, 14px);
-            font-weight: 700;
+        .marquee-inner {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.2rem;
             text-transform: uppercase;
-            padding: 5px 10px;
-            border: var(--border-thin);
         }
-        .cart-status:hover{
-            text-decoration: none;
-            background-color: #000000;
-            color: #ffffff;
-            margin-left: clamp(10px, 2vw, 20px);
-            font-size: clamp(11px, 2vw, 14px);
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 5px 10px;
-            border: var(--border-thin);
-        }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- Header --- */
+        /* Header */
         header {
-            padding: 20px 5%;
+            padding: 30px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: var(--border-heavy);
-            background: #fff;
-            position: sticky;
-            top: 0; z-index: 1000;
+            border-bottom: var(--border);
         }
+        .logo { font-family: 'Archivo Black'; font-size: 2.5rem; text-decoration: none; color: #000; letter-spacing: -2px; }
+        .nav-link { text-decoration: none; color: #000; font-weight: 700; border: var(--border); padding: 10px 20px; text-transform: uppercase; transition: 0.3s; }
+        .nav-link:hover { background: #000; color: #fff; }
 
-        .logo {
-            width: 100px;
-            height: auto;
-        }
-
-        .cart-status {
-            font-weight: 900;
-            text-transform: uppercase;
-            border: var(--border-thin);
-            padding: 5px 15px;
-        }
-
-        /* --- Product Layout --- */
+        /* Product Section */
         .product-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: calc(100vh - 80px);
-            margin: 20px;
-            border: var(--border-heavy);
+            min-height: 80vh;
+            border-bottom: var(--border);
         }
-
         .product-gallery {
-            border-right: var(--border-heavy);
-            padding: 40px;
+            border-right: var(--border);
+            padding: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #fa9cc8;
-            cursor: zoom-in;
+            background: #fff;
         }
-
         .main-img {
             width: 100%;
             max-width: 500px;
-            border: var(--border-heavy);
-            box-shadow: 15px 15px 0px #000;
-            transition: 0.3s;
+            border: var(--border);
+            transition: 0.4s;
         }
-
-        .main-img:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 20px 20px 0px #000;
+        .product-gallery:hover .main-img {
+            transform: rotate(-2deg);
+            box-shadow: 20px 20px 0px var(--black);
         }
 
         .product-details {
-            padding: 60px;
+            padding: 60px 10%;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            justify-content: center;
+            gap: 25px;
         }
+        h1 { font-family: 'Archivo Black'; font-size: clamp(2rem, 5vw, 4rem); line-height: 0.8; text-transform: uppercase; }
+        .price-tag { display: inline-block; background: var(--black); color: #fff; padding: 10px 20px; font-family: 'Archivo Black'; font-size: 1.5rem; width: fit-content; }
+        .description { line-height: 1.6; border-top: var(--border); padding-top: 20px; max-width: 500px; }
 
-        h1 {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2rem, 5vw, 4rem);
-            text-transform: uppercase;
-            line-height: 0.9;
-            letter-spacing: -2px;
-        }
+        /* Sizes */
+        .sizes { display: flex; gap: 10px; margin-top: 10px; }
+        .size-btn { width: 50px; height: 50px; border: var(--border); background: #fff; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .size-btn:hover, .size-btn.active { background: var(--black); color: #fff; transform: translate(-2px, -2px); box-shadow: 4px 4px 0px var(--accent); }
 
-        .price {
-            font-size: 2rem;
-            font-weight: 700;
-            background: #000;
-            color: #fff;
-            display: inline-block;
-            padding: 5px 15px;
-            width: fit-content;
-        }
-
-        .description {
-            font-size: 1rem;
-            max-width: 450px;
-            border-left: 4px solid #000;
-            padding-left: 20px;
-        }
-
-        /* --- Selectors --- */
-        .size-selector p { font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
-        .sizes { display: flex; gap: 10px; }
-
-        .size-btn {
-            width: 60px; height: 60px;
-            border: var(--border-heavy);
-            background: none;
-            font-family: inherit;
-            font-weight: 900;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .size-btn:hover, .size-btn.active {
-            background: #000;
-            color: #fff;
-        }
-
-        /* --- GLITCH BUTTON --- */
-        .btn-glitch {
-            position: relative;
-            padding: 25px;
-            background: #000;
-            color: #fff;
-            border: none;
-            font-family: 'Archivo Black', sans-serif;
+        /* Button */
+        .add-btn {
+            background: var(--accent);
+            color: #000;
+            border: var(--border);
+            padding: 20px;
+            font-family: 'Archivo Black';
             font-size: 1.5rem;
-            cursor: pointer;
-            text-transform: uppercase;
             text-align: center;
             text-decoration: none;
-            overflow: hidden;
-            display: block;
+            box-shadow: 8px 8px 0px #000;
+            transition: 0.3s;
         }
+        .add-btn:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0px #000; background: #fff; }
 
-        .btn-glitch:hover {
-            box-shadow: 6px 0px 0px #ff003c, -6px 0px 0px #00e5ff;
-            animation: glitch-anim 0.2s infinite;
-        }
-
-        .btn-glitch::before {
-            content: 'ADD TO BAG';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-glitch:hover::before {
-            display: flex;
-            text-shadow: 2px 0 red, -2px 0 cyan;
-            animation: glitch-layers 0.2s infinite;
-        }
-
-        @keyframes glitch-anim {
-            0% { clip-path: inset(10% 0 30% 0); transform: translate(-2px); }
-            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px); }
-            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px); }
-            60% { clip-path: inset(10% 0 80% 0); transform: translate(2px); }
-            100% { clip-path: inset(30% 0 20% 0); transform: translate(0); }
-        }
-
-        /* --- Lightbox Modal --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(255, 255, 255, 0.98);
-            cursor: zoom-out;
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            border: var(--border-heavy);
-            box-shadow: 30px 30px 0px #000;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px; right: 40px;
-            color: #000; font-size: 50px;
-            font-family: 'Archivo Black'; cursor: pointer;
-        }
-        .bnt_header {
-            text-decoration: none;
-            color: var(--text-main);
-            margin-left: clamp(10px, 2vw, 20px);
-            font-size: clamp(11px, 2vw, 14px);
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 5px 10px;
-            border: var(--border-thin);
-        }
-
-        .bnt_header:hover, .bnt_header.active {
-            background-color: #000;
-            color: #fff;
-        }
-
-        /* --- Footer --- */
         footer { background: #000; color: #fff; padding: 60px 5%; text-align: center; }
-        .footer-logo { font-family: 'Archivo Black'; font-size: clamp(2.5rem, 10vw, 5rem); border-bottom: 10px solid #fff; display: inline-block; margin-bottom: 30px;}
-        .footer-logo-img{margin-bottom: 20px; width: 250px; height: auto;}
-        .socials a { margin: 5px; color: #fff; text-decoration: none; font-size: 10px; border: 1px solid #fff; padding: 5px 8px; display: inline-block; }
+        .footer-logo { font-family: 'Archivo Black'; font-size: clamp(4rem, 20vw, 12rem); opacity: 0.1; }
 
-        @media (max-width: 900px) {
-            .product-container { grid-template-columns: 1fr; margin: 10px; }
-            .product-gallery { border-right: none; border-bottom: var(--border-heavy); }
-            .product-details { padding: 30px; }
+        @media (max-width: 850px) {
+            .product-container { grid-template-columns: 1fr; }
+            .product-gallery { border-right: none; border-bottom: var(--border); }
         }
     </style>
 </head>
 <body>
 
-    <div id="noise-container"></div>
+    <div class="marquee">
+        <div class="marquee-inner">
+            QWAR ARCHIVE 2026 // LIMITED RELEASE // DESIGNED IN UKRAINE // 
+        </div>
+    </div>
 
     <header>
-        <a href="index.html"><img class="logo" src="css\logo.png" alt="#"></a>
-        <a class="bnt_header" href="cart.html">Cart (0)</a>
+        <a href="index.html" class="logo">QWAR</a>
+        <nav><a href="index.html#shop" class="nav-link">Shop</a></nav>
     </header>
 
     <main class="product-container">
         <section class="product-gallery">
-            <img src="css/1.jpg" alt="who is QWAR hoodie" class="main-img" id="productImage">
+            <img src="" alt="Product" class="main-img" id="productImage">
         </section>
 
         <section class="product-details">
-            <p style="text-transform: uppercase; font-size: 12px; font-weight: bold;">[ DROP 01 / HOODIES ]</p>
-            <h1>who is QWAR hoodie</h1>
-            <p class="price">2 900 ₴</p>
+            <div style="font-size: 0.8rem; opacity: 0.5;">#DROP_001</div>
+            <h1 id="productTitle">LOADING...</h1>
+            <div class="price-tag" id="productPrice">0 UAH</div>
+            <div class="description" id="productDesc">...</div>
 
-            <div class="description">
-                Базовий худі вільного крою. 90% бавовна. Преміальна якість. Зроблено для вулиць та щоденного використання.
-            </div>
-
-            <div class="size-selector">
-                <p>SIZE:</p>
+            <div>
+                <p style="font-weight: 700; margin-bottom: 10px;">SELECT_SIZE:</p>
                 <div class="sizes">
                     <button class="size-btn">S</button>
                     <button class="size-btn active">M</button>
@@ -303,78 +152,61 @@
                 </div>
             </div>
 
-            <a href="cart.html" class="btn-glitch">Add to Bag</a>
-            
-            <p style="font-size: 10px; opacity: 0.5; text-align: center; text-transform: uppercase;">
-                Free shipping over 5000 ₴ / Worldwide delivery
-            </p>
+            <a href="cart.html" class="add-btn">ADD_TO_BAG</a>
         </section>
     </main>
 
-    <div id="image-modal" class="modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="full-image">
-    </div>
-
-    <footer>
-        <img class="footer-logo-img" src="css\logo_footer.png" alt="#">
-        <div class="socials">
-            <a href="#">INSTAGRAM</a>
-            <a href="#">TIKTOK</a>
-            <a href="#">TELEGRAM</a>
-        </div>
-        <p style="margin-top: 40px; font-size: 10px; opacity: 0.5;">EST. 2025. DESIGNED FOR THE STREETS.</p>
-    </footer>
+    <footer><div class="footer-logo">QWAR</div></footer>
 
     <script>
-        // Ефект "цифрового пилу" (Noise) - Низька інтенсивність
-        function initNoise() {
-            const container = document.getElementById('noise-container');
-            const particleCount = 35; 
-            for (let i = 0; i < particleCount; i++) {
-                const grain = document.createElement('div');
-                grain.className = 'grain';
-                const size = Math.random() * 1.5 + 0.5;
-                grain.style.width = size + 'px';
-                grain.style.height = size + 'px';
-                grain.style.left = Math.random() * 100 + '%';
-                grain.style.top = Math.random() * 100 + '%';
-                grain.animate([
-                    { opacity: 0 }, { opacity: 0.12 }, { opacity: 0 }
-                ], {
-                    duration: Math.random() * 2000 + 1000,
-                    iterations: Infinity
-                });
-                container.appendChild(grain);
-            }
-        }
-        initNoise();
+        const products = {
+            '1_1': { title: 'WHO_IS_QWAR_HOODIE', price: '2 900 UAH', img: 'css/1_1.png', desc: 'Класичний худі з першого архіву. 90% бавовна, вільний крій.' },
+            '1_2': { title: 'WHO_IS_QWAR_HOODIE_V2', price: '2 900 UAH', img: 'css/1_2.png', desc: 'Друга варіація класичного силуету з оновленими деталями.' },
+            '1_3': { title: 'VOID_TECH_WEAR', price: '4 100 UAH', img: 'css/1_3.png', desc: 'Технологічний верхній одяг. Стійкість до вітру та вологи.' },
+            '1_4': { title: 'CORE_ARCHIVE_TEE', price: '1 500 UAH', img: 'css/1_4.png', desc: 'Футболка високої щільності. Базовий елемент цифрового архіву.' }
+        };
 
-        // Модальне вікно (Відкриття картинки)
-        const modal = document.getElementById("image-modal");
-        const img = document.getElementById("productImage");
-        const modalImg = document.getElementById("full-image");
-        const closeBtn = document.querySelector(".close-modal");
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
 
-        img.onclick = function() {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            document.body.style.overflow = "hidden";
+        if (id && products[id]) {
+            const p = products[id];
+            document.getElementById('productTitle').innerText = p.title;
+            document.getElementById('productPrice').innerText = p.price;
+            document.getElementById('productImage').src = p.img;
+            document.getElementById('productDesc').innerText = p.desc;
+            document.title = `QWAR — ${p.title}`;
         }
 
-        modal.onclick = function(e) {
-            if (e.target !== modalImg) {
-                modal.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-        }
-
-        // Вибір розміру
-        const btns = document.querySelectorAll('.size-btn');
-        btns.forEach(b => b.onclick = () => {
-            btns.forEach(x => x.classList.remove('active'));
-            b.classList.add('active');
+        // Перемикання кнопок розміру
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            };
         });
+        // Додайте цей код всередині вашого <script> у product.html
+        const addToCartBtn = document.querySelector('.add-btn');
+
+        addToCartBtn.onclick = (e) => {
+            e.preventDefault();
+    
+            // Отримуємо ID товару з URL (ми його вже витягли раніше як 'id')
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+    
+            if (productId && products[productId]) {
+                const productToSave = products[productId];
+        // Додаємо ідентифікатор в об'єкт
+                productToSave.id = productId; 
+        
+        // Зберігаємо в LocalStorage
+                localStorage.setItem('cartItem', JSON.stringify(productToSave));
+        
+        // Перенаправляємо в кошик
+                window.location.href = 'cart.html';
+            }
+        };
     </script>
 </body>
 </html>
